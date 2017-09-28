@@ -2,3 +2,13 @@
 Laba_PA_1/.vs/Laba_PA_1/v15/.suo
 *.[oa]
 *~
+*.exe
+*.cache
+Laba_PA_1/Laba_PA_1/obj/Debug/Laba_PA_1.csproj.FileListAbsolute.txt
+*.pdb
+*.config
+*.ide
+Laba_PA_1/.vs/Laba_PA_1/v15/.suo
+*.ide
+Laba_PA_1/.vs/Laba_PA_1/v15/sqlite3/storage.ide
+Laba_PA_1/.vs/Laba_PA_1/v15/.suo
