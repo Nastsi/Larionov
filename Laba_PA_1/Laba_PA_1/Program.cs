@@ -22,7 +22,7 @@ namespace Laba_PA_1
         static public bool allGood;
         static public int done;
         static public int[] result;
-        static public double times;
+        static public double[] times;
 
         class AllThreadsBorders
         {
@@ -39,6 +39,7 @@ namespace Laba_PA_1
             done = 0;
             good = new bool[threads];
             min = new int[threads];
+            times = new double[threads + 1];
 
             for (int i = 0; i < threads; i++)
             {
@@ -136,7 +137,7 @@ namespace Laba_PA_1
                 Thread.Sleep(10);
             }
             Time.Stop();
-            times = Time.Elapsed.TotalMilliseconds;
+            times[threads] = Time.Elapsed.TotalMilliseconds;
 
         }
 
@@ -262,7 +263,14 @@ namespace Laba_PA_1
 
                 if (key == 1)
                 {
-                    for (int i = 1; i <= 5; i++)
+                    threads = 1;
+                    Start();
+                    double timefirst = 0;
+                    timefirst = times[1];
+                    Console.WriteLine();
+                    Console.WriteLine("Threads: " + threads + ". Time: " + times[1] + ". Result: " + result[0] + ". Coefficient: " + timefirst / times[1]);
+
+                    for (int i = 2; i <= 5; i++)
                     {
                         threads = i;
                         Start();
@@ -272,7 +280,7 @@ namespace Laba_PA_1
                             tek2 += result[p];
                         }
                         Console.WriteLine();
-                        Console.WriteLine("Time: " + times + ". Result: " + tek2);
+                        Console.WriteLine("Threads: " + threads + ". Time: " + times[i] + ". Result: " + tek2 + ". Coefficient: " + timefirst/times[i]);
                     }                    
                 }
 
