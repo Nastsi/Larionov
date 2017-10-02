@@ -20,7 +20,7 @@ Laba_PA_1/Вывод-Сборка.txt
 Laba_PA_1/.vs/Laba_PA_1/v15/.suo
 Lab1(Golomb)/.vs/Lab1(Golomb)/v14/.suo
 Lab1(Golomb)/.vs/*.suo
-/*.sln
+/
 *.manifest
 *.csproj
 Lab1(Golomb)/Lab1(Golomb)/obj/Debug/Lab1(Golomb).csproj.FileListAbsolute.txt
@@ -29,5 +29,5 @@ Lab1(Golomb)/Lab1(Golomb)/Properties/AssemblyInfo.cs
 Lab1(Golomb)/Lab1(Golomb)/obj/Debug/TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs
 Lab1(Golomb)/Lab1(Golomb)/obj/Debug/TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs
 Lab1(Golomb)/Lab1(Golomb)/obj/Debug/TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs
-Lab1(Golomb)/Lab1(Golomb).sln
+
 Lab1(Golomb)/.vs/Lab1(Golomb)/v15/.suo
