@@ -13,12 +13,11 @@ namespace Laba_PA_2
     {
         static public long n = 10;
         static public int threads;
-        static public long[] mass;
-        static public long[] prefix;
-        static public bool allGood;
-        static public bool[] good;
+        static public double[] mass;
+        static public double[] prefix;
         static public int done;
         static public double[] times;
+        static public bool[] done1;
 
         class AllThreadsBorders
         {
@@ -31,10 +30,9 @@ namespace Laba_PA_2
         {
             Thread[] AllThreads = new Thread[threads];
             AllThreadsBorders[] borders = new AllThreadsBorders[threads];
-            allGood = false;
             done = 0;
-            good = new bool[threads];
             times = new double[threads + 1];
+            
 
             for (int i = 0; i < threads; i++)
             {
@@ -47,7 +45,6 @@ namespace Laba_PA_2
                 }
                 else borders[i].Right = borders[i].Left + (mass.Length / threads - 1);
                 borders[i].NumOfProcessor = i + 1;
-                good[i] = false;
             }
             Stopwatch Time = new Stopwatch();
             Time.Start();
@@ -56,26 +53,6 @@ namespace Laba_PA_2
                 AllThreads[i].Start(borders[i]);
             }
 
-            while (!allGood)
-            {
-                bool now = true;
-                for (int i = 0; i < threads; i++)
-                {
-                    if (good[i] == false)
-                    {
-                        now = false;
-                        break;
-                    }
-                }
-                if (now == true)
-                {
-                    allGood = true;
-                }
-                else
-                {
-                    Thread.Sleep(10);
-                }
-            }
             AllThreads[threads - 1].Join();
 
             while (done != threads)
@@ -85,23 +62,77 @@ namespace Laba_PA_2
             
             Time.Stop();
             times[threads] = Time.Elapsed.TotalMilliseconds;
-
         }
 
         public static void Algorithm(object borders)
         {
+            AllThreadsBorders border = (AllThreadsBorders)borders;
+            done1 = new bool[threads];
 
+            for (int i = 0; i < threads; i++)
+            {
+                done1[i] = false;
+            }
+
+            for (int i = border.Left; i <= border.Right; i++)
+            {
+                if (i == border.Left)
+                {
+                    prefix[i] = mass[i];
+                }
+                else prefix[i] = mass[i] + prefix[i - 1];
+            }
+
+            if (border.NumOfProcessor == 1)
+            {
+                done1[0] = true;
+                Console.WriteLine("I'm " + border.NumOfProcessor + ". I'm done first time");
+            }
+
+            while (done1[0] != true)
+            {
+                Thread.Sleep(1);
+                Console.WriteLine("I'm " + border.NumOfProcessor + ". I'm sleeping");
+            }
+            
+            if (border.NumOfProcessor == 3)
+            {
+                while(done1[1] != true)
+                {
+                    Console.WriteLine("I'm " + border.NumOfProcessor + ". I'm sleeping again");
+                    Thread.Sleep(1);
+                }
+            }
+
+            do
+            {
+                if (border.NumOfProcessor == 1)
+                    break;
+                else if (done1[border.NumOfProcessor - 2] == true)
+                {
+                    for (int i = border.Left - 1; i <= border.Right; i++)
+                    {
+                        prefix[i] = mass[i] + prefix[i - 1];
+                    }
+                    done1[border.NumOfProcessor - 1] = true;
+                }
+            } while (done1[border.NumOfProcessor - 1] == false);
+
+            done++;
+            Console.WriteLine("I'm " + border.NumOfProcessor + ". I did everything");
         }
 
         static void Main(string[] args)
         {
             int key = 0;
             Random rand = new Random();
-            mass = new long[n];
+            mass = new double[n];
+            prefix = new double[n];
 
             for (int i = 0; i < n; i++)
             {
-                mass[i] = rand.Next(1, 50);
+                mass[i] = rand.NextDouble() * 100;
+                Console.Write(mass[i] + " ");
             }
 
             do
@@ -116,9 +147,14 @@ namespace Laba_PA_2
                 if (key == 1)
                 {
                     threads = 1;
+                    //Start();
 
                     threads = 3;
                     Start();
+                    //for (int i = 0; i < 10; i++)
+                    //{
+                    //    Console.Write(prefix[i] + " ");
+                    //}
                 }
 
             } while (key != 2);
