@@ -11,7 +11,7 @@ namespace Laba_PA_2
 {
     class Program
     {
-        static public long n = 10;
+        static public long n = 100000000;
         static public int threads;
         static public double[] mass;
         static public double[] prefix;
@@ -32,7 +32,12 @@ namespace Laba_PA_2
             AllThreadsBorders[] borders = new AllThreadsBorders[threads];
             done = 0;
             times = new double[threads + 1];
-            
+            done1 = new bool[threads];
+
+            for (int i = 0; i < threads; i++)
+            {
+                done1[i] = false;
+            }
 
             for (int i = 0; i < threads; i++)
             {
@@ -67,12 +72,7 @@ namespace Laba_PA_2
         public static void Algorithm(object borders)
         {
             AllThreadsBorders border = (AllThreadsBorders)borders;
-            done1 = new bool[threads];
-
-            for (int i = 0; i < threads; i++)
-            {
-                done1[i] = false;
-            }
+            
 
             for (int i = border.Left; i <= border.Right; i++)
             {
@@ -83,23 +83,19 @@ namespace Laba_PA_2
                 else prefix[i] = mass[i] + prefix[i - 1];
             }
 
-            if (border.NumOfProcessor == 1)
-            {
-                done1[0] = true;
-                Console.WriteLine("I'm " + border.NumOfProcessor + ". I'm done first time");
-            }
-
             while (done1[0] != true)
             {
-                Thread.Sleep(1);
-                Console.WriteLine("I'm " + border.NumOfProcessor + ". I'm sleeping");
+                if (border.NumOfProcessor == 1)
+                {
+                    done1[0] = true;
+                }
+                else Thread.Sleep(1);
             }
             
             if (border.NumOfProcessor == 3)
             {
                 while(done1[1] != true)
                 {
-                    Console.WriteLine("I'm " + border.NumOfProcessor + ". I'm sleeping again");
                     Thread.Sleep(1);
                 }
             }
@@ -119,7 +115,6 @@ namespace Laba_PA_2
             } while (done1[border.NumOfProcessor - 1] == false);
 
             done++;
-            Console.WriteLine("I'm " + border.NumOfProcessor + ". I did everything");
         }
 
         static void Main(string[] args)
@@ -128,12 +123,6 @@ namespace Laba_PA_2
             Random rand = new Random();
             mass = new double[n];
             prefix = new double[n];
-
-            for (int i = 0; i < n; i++)
-            {
-                mass[i] = rand.NextDouble() * 100;
-                Console.Write(mass[i] + " ");
-            }
 
             do
             {
@@ -146,15 +135,18 @@ namespace Laba_PA_2
 
                 if (key == 1)
                 {
+                    for (int i = 0; i < n; i++)
+                    {
+                        mass[i] = rand.NextDouble() * 100;
+                    }
+
                     threads = 1;
-                    //Start();
+                    Start();
+                    Console.WriteLine("1 thread. Last prefix = " + prefix[n - 1] + ". Time =  " + times[1]);
 
                     threads = 3;
                     Start();
-                    //for (int i = 0; i < 10; i++)
-                    //{
-                    //    Console.Write(prefix[i] + " ");
-                    //}
+                    Console.WriteLine("3 threads. Last prefix = " + prefix[n - 1] + ". Time =  " + times[3]);
                 }
 
             } while (key != 2);
