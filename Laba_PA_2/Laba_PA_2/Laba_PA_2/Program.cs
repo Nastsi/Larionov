@@ -64,7 +64,7 @@ namespace Laba_PA_2
             {
                 Thread.Sleep(10);
             }
-            
+
             Time.Stop();
             times[threads] = Time.Elapsed.TotalMilliseconds;
         }
@@ -72,7 +72,7 @@ namespace Laba_PA_2
         public static void Algorithm(object borders)
         {
             AllThreadsBorders border = (AllThreadsBorders)borders;
-            
+
 
             for (int i = border.Left; i <= border.Right; i++)
             {
@@ -91,10 +91,10 @@ namespace Laba_PA_2
                 }
                 else Thread.Sleep(1);
             }
-            
+
             if (border.NumOfProcessor == 3)
             {
-                while(done1[1] != true)
+                while (done1[1] != true)
                 {
                     Thread.Sleep(1);
                 }
@@ -124,32 +124,22 @@ namespace Laba_PA_2
             mass = new double[n];
             prefix = new double[n];
 
-            do
+
+            for (int i = 0; i < n; i++)
             {
-                Console.WriteLine();
-                Console.WriteLine("1. Start.");
-                Console.WriteLine("2. Exit.");
-                Console.WriteLine();
-                Console.Write("Answer: ");
-                int.TryParse(Console.ReadLine(), out key);
+                mass[i] = rand.NextDouble() * 100;
+            }
 
-                if (key == 1)
-                {
-                    for (int i = 0; i < n; i++)
-                    {
-                        mass[i] = rand.NextDouble() * 100;
-                    }
+            threads = 1;
+            Start();
+            Console.WriteLine("1 thread. Summa[1, 100000000] = " + prefix[n - 1] + ". Time =  " + times[1]);
+            double timefirst = times[1];
 
-                    threads = 1;
-                    Start();
-                    Console.WriteLine("1 thread. Last prefix = " + prefix[n - 1] + ". Time =  " + times[1]);
-
-                    threads = 3;
-                    Start();
-                    Console.WriteLine("3 threads. Last prefix = " + prefix[n - 1] + ". Time =  " + times[3]);
-                }
-
-            } while (key != 2);
+            threads = 3;
+            Start();
+            Console.WriteLine("3 threads. Summa[1, 100000000] = " + prefix[n - 1] + ". Time =  " + times[3]);
+            Console.WriteLine("Coefficient: " + timefirst / times[3]);
+            Console.ReadKey();
         }
     }
 }
