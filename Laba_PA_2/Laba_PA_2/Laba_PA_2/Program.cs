@@ -11,7 +11,7 @@ namespace Laba_PA_2
 {
     class Program
     {
-        static public long n = 100000000;
+        static public long n = 10;
         static public int threads;
         static public double[] mass;
         static public double[] prefix;
@@ -119,7 +119,6 @@ namespace Laba_PA_2
 
         static void Main(string[] args)
         {
-            int key = 0;
             Random rand = new Random();
             mass = new double[n];
             prefix = new double[n];
@@ -132,12 +131,12 @@ namespace Laba_PA_2
 
             threads = 1;
             Start();
-            Console.WriteLine("1 thread. Summa[1, 100000000] = " + prefix[n - 1] + ". Time =  " + times[1]);
+            Console.WriteLine("1 thread. Summa[1, " + n + "] = " + prefix[n - 1] + ". Time =  " + times[1]);
             double timefirst = times[1];
 
             threads = 3;
             Start();
-            Console.WriteLine("3 threads. Summa[1, 100000000] = " + prefix[n - 1] + ". Time =  " + times[3]);
+            Console.WriteLine("3 threads. Summa[1, " + n + "] = " + prefix[n - 1] + ". Time =  " + times[3]);
             Console.WriteLine("Coefficient: " + timefirst / times[3]);
             Console.ReadKey();
         }
