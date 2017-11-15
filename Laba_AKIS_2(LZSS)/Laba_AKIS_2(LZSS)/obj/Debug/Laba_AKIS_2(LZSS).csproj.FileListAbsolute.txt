@@ -1,0 +1,7 @@
+D:\Everything\Лабораторные_5_курс\Larionov\Laba_AKIS_2(LZSS)\Laba_AKIS_2(LZSS)\obj\Debug\Laba_AKIS_2(LZSS).csprojResolveAssemblyReference.cache
+D:\Everything\Лабораторные_5_курс\Larionov\Laba_AKIS_2(LZSS)\Laba_AKIS_2(LZSS)\obj\Debug\Laba_AKIS_2(LZSS).csproj.CoreCompileInputs.cache
+D:\Everything\Лабораторные_5_курс\Larionov\Laba_AKIS_2(LZSS)\Laba_AKIS_2(LZSS)\bin\Debug\Laba_AKIS_2(LZSS).exe.config
+D:\Everything\Лабораторные_5_курс\Larionov\Laba_AKIS_2(LZSS)\Laba_AKIS_2(LZSS)\bin\Debug\Laba_AKIS_2(LZSS).exe
+D:\Everything\Лабораторные_5_курс\Larionov\Laba_AKIS_2(LZSS)\Laba_AKIS_2(LZSS)\bin\Debug\Laba_AKIS_2(LZSS).pdb
+D:\Everything\Лабораторные_5_курс\Larionov\Laba_AKIS_2(LZSS)\Laba_AKIS_2(LZSS)\obj\Debug\Laba_AKIS_2(LZSS).exe
+D:\Everything\Лабораторные_5_курс\Larionov\Laba_AKIS_2(LZSS)\Laba_AKIS_2(LZSS)\obj\Debug\Laba_AKIS_2(LZSS).pdb
