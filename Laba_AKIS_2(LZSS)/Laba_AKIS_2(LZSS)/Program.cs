@@ -209,11 +209,82 @@ namespace Laba_AKIS_2_LZSS_
             return getBytes(stream.ToArray());
         }
 
+        public static byte[] decode(byte[] encoded)
+        {
+            byte[] bits = getBits(encoded);
+
+            List<byte> result = new List<byte>();
+
+            for (int i = 0; i < dictionary.Length; i++)
+            {
+                dictionary[i] = 0;
+            }
+
+            for (int i = 0; i < bits.Length; i++)
+            {
+                if (bits.Length - 1 == i) break;
+                else if (bits[i] == 0)
+                {
+                    byte[] b = new byte[8];
+                    for (int j = 0; j < 8; j++)
+                    {
+                        if (bits.Length == i + j + 1) break;
+                        else b[j] = bits[i + j + 1];
+                    }
+                    result.Add(getByte(b));
+
+                    for (int j = 0; j < dictionary.Length - 1; j++)
+                    {
+                        dictionary[j] = dictionary[j + 1];
+                    }
+                    dictionary[dictionary.Length - 1] = getByte(b);
+
+                }
+                else if (bits[i] == 1)
+                {
+                    byte[] b = new byte[8];
+                    for (int j = 0; j < 8; j++)
+                    {
+                        b[j] = bits[i + j + 1];
+                    }
+                    int dic = getByte(b);
+                    for (int j = 0; j < 8; j++)
+                    {
+                        b[j] = bits[i + j + 9];
+                    }
+                    int size = getByte(b);
+
+                    byte[] unboxing = new byte[size];
+                    for (int j = 0; j < size; j++)
+                    {
+                        unboxing[j] = dictionary[dic];
+                        dic++;
+                    }
+                    for (int j = 0; j < dictionary.Length - size; j++)
+                    {
+                        dictionary[j] = dictionary[j + size];
+                    }
+                    int tek = 0;
+                    for (int j = dictionary.Length - size; j < dictionary.Length; j++) //заполняем конец словаря подстрокой из буфера
+                    {
+                        dictionary[j] = unboxing[tek];
+                        tek++;
+                    }
+                    result.AddRange(unboxing);
+                }
+
+                if (bits[i] == 0) i = i + 8;
+                else i = i + 16;
+            }
+
+            return result.ToArray();
+        }
+
         static void Main(string[] args)
         {
             int key = 0;
-            dictionary = new byte[250];
-            buffer = new byte[125];
+            dictionary = new byte[255];
+            buffer = new byte[150];
             do
             {
                 Console.WriteLine("1. Закодировать текстовый файл");
@@ -235,6 +306,20 @@ namespace Laba_AKIS_2_LZSS_
 
                     Console.WriteLine("Кодирование успешно завершено");
                     Console.WriteLine("SizeMax = " + sizeMax);
+                    Console.ReadKey();
+                }
+
+                if (key == 2)
+                {
+                    Console.Write("Введите имя файла для декодирования: ");
+                    string filename = Console.ReadLine();
+                    byte[] encodedBytes = File.ReadAllBytes(filename);
+
+                    byte[] decodedBytes = decode(encodedBytes);
+
+                    File.WriteAllBytes(filename.Substring(0, filename.Length - 4) + "_Decoded.txt", decodedBytes);
+
+                    Console.WriteLine("Декодирование успешно завершено");
                     Console.ReadKey();
                 }
             } while (key != 3);
