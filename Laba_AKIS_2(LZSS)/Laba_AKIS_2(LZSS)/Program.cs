@@ -11,6 +11,8 @@ namespace Laba_AKIS_2_LZSS_
     {
         public static byte[] dictionary;
         public static byte[] buffer;
+        public static int schet = 0;
+        public static int sizeMax = 0;
 
         public static byte[] getBits(byte[] array)
         {
@@ -33,6 +35,26 @@ namespace Laba_AKIS_2_LZSS_
                     }
                     b *= 2;
                 }
+            }
+
+            return bits;
+        }
+
+        public static byte[] getBitsofByte(byte b)
+        {
+            byte[] bits = new byte[8];
+
+            for (int i = 0; i < 8; i++)
+            {
+                if ((b & 0x80) != 0)
+                {
+                    bits[i] = 1;
+                }
+                else
+                {
+                    bits[i] = 0;
+                }
+                b *= 2;
             }
 
             return bits;
@@ -87,7 +109,7 @@ namespace Laba_AKIS_2_LZSS_
         public static byte[] encode(byte[] bytes)
         {
             List<byte> stream = new List<byte>();
-            
+
 
             for (int i = 0; i < bytes.Length; i++)
             {
@@ -96,47 +118,95 @@ namespace Laba_AKIS_2_LZSS_
                 int buf = 0;
                 int dic = 0;
 
-                for (int j = 0; j < buffer.Length; j++)
+                if (i == 0) //первый раз заполняем буфер
                 {
-                    buffer[j] = bytes[i + j];
+                    for (int j = 0; j < buffer.Length; j++)
+                    {
+                        if ((i + j) != bytes.Length - 1)
+                        {
+                            buffer[j] = bytes[i + j];
+                        }
+                        else break;
+                    }
                 }
 
-                for (int j = 0; j < dictionary.Length; j++)
+                for (int j = 0; j < dictionary.Length; j++) //начинаем проход по словарю
                 {
                     if (dictionary[j] == buffer[buf])
                     {
                         exist = true;
                         size++;
                         buf++;
+                        if (dic == 0)
+                        {
+                            dic = j;
+                        }
+                        if (buf == buffer.Length) break;
                     }
                     else
                     {
-                        if ((exist == true) && (size != 1)) break;
-                        else if (size == 1)
+                        if ((exist == true) && (size > 2)) break; //если нашли одинаковые подстроки и дошли до символа, который не повторяется, уходим из цикла
+                        else if (size <= 2) //если размер подстроки меньше 3х, то мы не будем это сжимать
                         {
                             size = 0;
                             exist = false;
                             buf = 0;
+                            dic = 0;
                         }
                     }
                 }
 
-                if (exist == false)
+                if ((exist == false) || (size <= 2))
                 {
                     stream.Add(0);
-                    stream.Add(bytes[i]);
+                    byte[] bits = getBitsofByte(bytes[i]);
+                    stream.AddRange(bits);
+                    size = 1;
                 }
                 else
                 {
+                    schet++;
+                    if (sizeMax < size)
+                    {
+                        sizeMax = size;
+                    }
                     stream.Add(1);
-                    stream.Add((byte)dic);
-                    stream.Add((byte)size);
+                    byte[] bits = getBitsofByte((byte)dic);
+                    stream.AddRange(bits);
+                    bits = getBitsofByte((byte)size);
+                    stream.AddRange(bits);
+                }
+
+                for (int j = 0; j < dictionary.Length - size; j++) //сдвигаем словарь, освобождая место под новые символы в конце
+                {
+                    dictionary[j] = dictionary[j + size];
+                }
+
+                int tek = 0;
+                for (int j = dictionary.Length - size; j < dictionary.Length; j++) //заполняем конец словаря подстрокой из буфера
+                {
+                    dictionary[j] = buffer[tek];
+                    tek++;
+                }
+
+                for (int j = 0; j < buffer.Length; j++) //обновляем буфер
+                {
+                    if ((i + j + size) < bytes.Length - 1)
+                    {
+                        buffer[j] = bytes[i + j + size];
+                    }
+                    else
+                    {
+                        buffer[j] = 0;
+                    }
+                }
+                if (size > 2)
+                {
+                    i = i + size - 1;
                 }
             }
 
-            byte[] encoded = 
-
-            return ;
+            return getBytes(stream.ToArray());
         }
 
         static void Main(string[] args)
@@ -161,9 +231,10 @@ namespace Laba_AKIS_2_LZSS_
 
                     byte[] encoded = encode(bytes);
 
-                    //File.WriteAllBytes(filename.Substring(0, filename.Length - 4) + "_Golomb.txt", encoded);
+                    File.WriteAllBytes(filename.Substring(0, filename.Length - 4) + "_LZSS.txt", encoded);
 
                     Console.WriteLine("Кодирование успешно завершено");
+                    Console.WriteLine("SizeMax = " + sizeMax);
                     Console.ReadKey();
                 }
             } while (key != 3);
