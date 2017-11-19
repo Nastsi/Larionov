@@ -284,7 +284,7 @@ namespace Laba_AKIS_2_LZSS_
         {
             int key = 0;
             dictionary = new byte[255];
-            buffer = new byte[150];
+            buffer = new byte[125];
             do
             {
                 Console.WriteLine("1. Закодировать текстовый файл");
