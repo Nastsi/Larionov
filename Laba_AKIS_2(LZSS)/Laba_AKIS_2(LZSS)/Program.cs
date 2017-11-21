@@ -305,7 +305,7 @@ namespace Laba_AKIS_2_LZSS_
                     File.WriteAllBytes(filename.Substring(0, filename.Length - 4) + "_LZSS.txt", encoded);
 
                     Console.WriteLine("Кодирование успешно завершено");
-                    Console.WriteLine("SizeMax = " + sizeMax);
+                    //Console.WriteLine("SizeMax = " + sizeMax);
                     Console.ReadKey();
                 }
 
