@@ -18,6 +18,7 @@ namespace Laba_AKIS_3_Hamming_
 
             do
             {
+                Console.WriteLine("Код Хэмминга: (7,4).");
                 Console.WriteLine("1. Сгенерировать последовательность бит.");
                 Console.WriteLine("2. Закодировать последовательность кодом Хэмминга.");
                 Console.WriteLine("3. Произвести ошибку в закодированной последовательности.");
@@ -59,7 +60,7 @@ namespace Laba_AKIS_3_Hamming_
 
                 if (key == 3)
                 {
-                    int error = rand.Next(0, 8);
+                    int error = rand.Next(0, 7);
                     if (encode[error] == 0) encode[error] = 1;
                     else encode[error] = 0;
 
