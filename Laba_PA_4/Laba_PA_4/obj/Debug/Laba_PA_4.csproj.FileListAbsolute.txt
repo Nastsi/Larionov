@@ -1,0 +1,7 @@
+D:\Everything\Лабораторные_5_курс\Larionov\Laba_PA_4\Laba_PA_4\bin\Debug\Laba_PA_4.exe.config
+D:\Everything\Лабораторные_5_курс\Larionov\Laba_PA_4\Laba_PA_4\bin\Debug\Laba_PA_4.exe
+D:\Everything\Лабораторные_5_курс\Larionov\Laba_PA_4\Laba_PA_4\bin\Debug\Laba_PA_4.pdb
+D:\Everything\Лабораторные_5_курс\Larionov\Laba_PA_4\Laba_PA_4\obj\Debug\Laba_PA_4.csprojResolveAssemblyReference.cache
+D:\Everything\Лабораторные_5_курс\Larionov\Laba_PA_4\Laba_PA_4\obj\Debug\Laba_PA_4.csproj.CoreCompileInputs.cache
+D:\Everything\Лабораторные_5_курс\Larionov\Laba_PA_4\Laba_PA_4\obj\Debug\Laba_PA_4.exe
+D:\Everything\Лабораторные_5_курс\Larionov\Laba_PA_4\Laba_PA_4\obj\Debug\Laba_PA_4.pdb
