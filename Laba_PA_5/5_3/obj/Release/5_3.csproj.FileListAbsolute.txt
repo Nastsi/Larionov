@@ -1,0 +1,9 @@
+D:\Everything\9_Semestr\ПА\5_3\5_3\bin\Release\5_3.exe.config
+D:\Everything\9_Semestr\ПА\5_3\5_3\bin\Release\5_3.exe
+D:\Everything\9_Semestr\ПА\5_3\5_3\bin\Release\5_3.pdb
+D:\Everything\9_Semestr\ПА\5_3\5_3\bin\Release\Meta.Numerics.dll
+D:\Everything\9_Semestr\ПА\5_3\5_3\bin\Release\Meta.Numerics.xml
+D:\Everything\9_Semestr\ПА\5_3\5_3\obj\Release\5_3.csprojResolveAssemblyReference.cache
+D:\Everything\9_Semestr\ПА\5_3\5_3\obj\Release\5_3.csproj.CoreCompileInputs.cache
+D:\Everything\9_Semestr\ПА\5_3\5_3\obj\Release\5_3.exe
+D:\Everything\9_Semestr\ПА\5_3\5_3\obj\Release\5_3.pdb
