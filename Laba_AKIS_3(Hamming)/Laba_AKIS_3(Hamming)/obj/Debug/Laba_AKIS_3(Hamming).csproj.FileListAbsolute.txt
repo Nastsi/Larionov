@@ -1,0 +1,7 @@
+D:\Everything\Лабораторные_5_курс\Larionov\Laba_AKIS_3(Hamming)\Laba_AKIS_3(Hamming)\obj\Debug\Laba_AKIS_3(Hamming).csprojResolveAssemblyReference.cache
+D:\Everything\Лабораторные_5_курс\Larionov\Laba_AKIS_3(Hamming)\Laba_AKIS_3(Hamming)\obj\Debug\Laba_AKIS_3(Hamming).csproj.CoreCompileInputs.cache
+D:\Everything\Лабораторные_5_курс\Larionov\Laba_AKIS_3(Hamming)\Laba_AKIS_3(Hamming)\bin\Debug\Laba_AKIS_3(Hamming).exe.config
+D:\Everything\Лабораторные_5_курс\Larionov\Laba_AKIS_3(Hamming)\Laba_AKIS_3(Hamming)\bin\Debug\Laba_AKIS_3(Hamming).exe
+D:\Everything\Лабораторные_5_курс\Larionov\Laba_AKIS_3(Hamming)\Laba_AKIS_3(Hamming)\bin\Debug\Laba_AKIS_3(Hamming).pdb
+D:\Everything\Лабораторные_5_курс\Larionov\Laba_AKIS_3(Hamming)\Laba_AKIS_3(Hamming)\obj\Debug\Laba_AKIS_3(Hamming).exe
+D:\Everything\Лабораторные_5_курс\Larionov\Laba_AKIS_3(Hamming)\Laba_AKIS_3(Hamming)\obj\Debug\Laba_AKIS_3(Hamming).pdb
